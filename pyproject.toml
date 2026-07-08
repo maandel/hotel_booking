@@ -6,7 +6,7 @@ authors = [
     {name = "Author",email = "author@example.com"}
 ]
 readme = "README.md"
-requires-python = "^3.12"
+requires-python = ">=3.12"
 dependencies = [
     "django (>=6.0.7,<7.0.0)",
     "requests (>=2.34.2,<3.0.0)",
@@ -24,3 +24,24 @@ dependencies = [
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "ruff (>=0.15.20,<0.16.0)",
+    "bandit (>=1.9.4,<2.0.0)",
+    "safety (>=3.8.1,<4.0.0)"
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "UP", "B", "SIM", "RUF"]
+# Ignore line length (E501) since formatter handles it where possible, and RUF012 which conflicts with Django choices/migrations
+ignore = ["E501", "RUF012", "RUF001"]
+
+[tool.ruff.format]
+quote-style = "double"
+
+

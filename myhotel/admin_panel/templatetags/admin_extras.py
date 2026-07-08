@@ -2,6 +2,7 @@ from django import template
 
 register = template.Library()
 
+
 @register.filter
 def user_initial(user):
     """
@@ -13,7 +14,8 @@ def user_initial(user):
     elif user.username and len(user.username) > 0:
         return user.username[0].upper()
     else:
-        return 'U'  # Default fallback
+        return "U"  # Default fallback
+
 
 @register.filter
 def safe_first_char(value):
@@ -23,4 +25,4 @@ def safe_first_char(value):
     """
     if value and len(str(value)) > 0:
         return str(value)[0].upper()
-    return ''
+    return ""

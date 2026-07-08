@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('hotel', '0002_booking_special_request_alter_booking_status'),
+        ("hotel", "0002_booking_special_request_alter_booking_status"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='hotel',
-            name='hotel_logo',
-            field=models.ImageField(blank=True, null=True, upload_to='hotel/'),
+            model_name="hotel",
+            name="hotel_logo",
+            field=models.ImageField(blank=True, null=True, upload_to="hotel/"),
         ),
     ]

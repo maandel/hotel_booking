@@ -4,20 +4,27 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('hotel', '0001_initial'),
+        ("hotel", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='booking',
-            name='special_request',
+            model_name="booking",
+            name="special_request",
             field=models.TextField(blank=True),
         ),
         migrations.AlterField(
-            model_name='booking',
-            name='status',
-            field=models.CharField(choices=[('pending', 'Pending'), ('confirmed', 'Confirmed'), ('cancelled', 'Cancelled')], default='pending', max_length=30),
+            model_name="booking",
+            name="status",
+            field=models.CharField(
+                choices=[
+                    ("pending", "Pending"),
+                    ("confirmed", "Confirmed"),
+                    ("cancelled", "Cancelled"),
+                ],
+                default="pending",
+                max_length=30,
+            ),
         ),
     ]

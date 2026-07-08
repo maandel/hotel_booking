@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('hotel', '0006_rename_amenity_roomamenity'),
+        ("hotel", "0006_rename_amenity_roomamenity"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='roomtype',
-            name='base_price',
+            model_name="roomtype",
+            name="base_price",
             field=models.CharField(max_length=300),
         ),
     ]

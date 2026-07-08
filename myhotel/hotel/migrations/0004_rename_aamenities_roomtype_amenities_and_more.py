@@ -5,52 +5,66 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('hotel', '0003_hotel_hotel_logo'),
+        ("hotel", "0003_hotel_hotel_logo"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='roomtype',
-            old_name='aamenities',
-            new_name='amenities',
+            model_name="roomtype",
+            old_name="aamenities",
+            new_name="amenities",
         ),
         migrations.RemoveField(
-            model_name='booking',
-            name='email',
+            model_name="booking",
+            name="email",
         ),
         migrations.RemoveField(
-            model_name='booking',
-            name='first_name',
+            model_name="booking",
+            name="first_name",
         ),
         migrations.RemoveField(
-            model_name='booking',
-            name='last_name',
+            model_name="booking",
+            name="last_name",
         ),
         migrations.RemoveField(
-            model_name='booking',
-            name='phone_number',
+            model_name="booking",
+            name="phone_number",
         ),
         migrations.AlterField(
-            model_name='booking',
-            name='checkin',
+            model_name="booking",
+            name="checkin",
             field=models.DateField(),
         ),
         migrations.AlterField(
-            model_name='booking',
-            name='checkout',
+            model_name="booking",
+            name="checkout",
             field=models.DateField(),
         ),
         migrations.CreateModel(
-            name='Guest',
+            name="Guest",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('first_name', models.CharField(max_length=50)),
-                ('last_name', models.CharField(max_length=50)),
-                ('email', models.EmailField(max_length=254)),
-                ('phone', models.CharField(max_length=15)),
-                ('booking', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='hotel.booking')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("first_name", models.CharField(max_length=50)),
+                ("last_name", models.CharField(max_length=50)),
+                ("email", models.EmailField(max_length=254)),
+                ("phone", models.CharField(max_length=15)),
+                (
+                    "booking",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="hotel.booking",
+                    ),
+                ),
             ],
         ),
     ]

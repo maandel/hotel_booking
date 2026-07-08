@@ -1,6 +1,11 @@
 from django import template
-from django.contrib.contenttypes.models import ContentType
-from ..permission_decorators import has_permission, has_section_access, has_model_permission, get_user_accessible_sections
+
+from ..permission_decorators import (
+    get_user_accessible_sections,
+    has_model_permission,
+    has_permission,
+    has_section_access,
+)
 
 register = template.Library()
 
@@ -21,7 +26,7 @@ def has_model_perm(user, model_and_action):
     Usage: {% if user|has_model_perm:"booking.view" %}
     """
     try:
-        model_name, action = model_and_action.split('.')
+        model_name, action = model_and_action.split(".")
         permission_codename = f"{action}_{model_name}"
         return has_permission(user, permission_codename)
     except (ValueError, AttributeError):
@@ -44,7 +49,7 @@ def can_access_model(user, model_and_action):
     Usage: {% if user|can_access_model:"booking.view" %}
     """
     try:
-        model_name, action = model_and_action.split('.')
+        model_name, action = model_and_action.split(".")
         return has_model_permission(user, model_name, action)
     except (ValueError, AttributeError):
         return False
@@ -78,28 +83,22 @@ def get_accessible_sections(user):
     return get_user_accessible_sections(user)
 
 
-@register.inclusion_tag('admin_panel/partials/permission_check.html')
-def show_if_permitted(user, permission_codename, content=''):
+@register.inclusion_tag("admin_panel/partials/permission_check.html")
+def show_if_permitted(user, permission_codename, content=""):
     """
     Inclusion tag to conditionally show content based on permission
     Usage: {% show_if_permitted user "view_booking" "View Bookings" %}
     """
-    return {
-        'show': has_permission(user, permission_codename),
-        'content': content
-    }
+    return {"show": has_permission(user, permission_codename), "content": content}
 
 
-@register.inclusion_tag('admin_panel/partials/section_check.html')
-def show_if_section_access(user, section, content=''):
+@register.inclusion_tag("admin_panel/partials/section_check.html")
+def show_if_section_access(user, section, content=""):
     """
     Inclusion tag to conditionally show content based on section access
     Usage: {% show_if_section_access user "booking" "Booking Section" %}
     """
-    return {
-        'show': has_section_access(user, section),
-        'content': content
-    }
+    return {"show": has_section_access(user, section), "content": content}
 
 
 @register.simple_tag
@@ -109,12 +108,15 @@ def get_user_role_display(user):
     """
     if user.is_superuser:
         return "Administrator"
-    
+
     from hotel.models import UserRole
-    user_roles = UserRole.objects.filter(user=user, role__is_active=True).select_related('role')
-    
+
+    user_roles = UserRole.objects.filter(
+        user=user, role__is_active=True
+    ).select_related("role")
+
     if not user_roles.exists():
         return "No Role Assigned"
-    
+
     role_names = [ur.role.name for ur in user_roles]
     return ", ".join(role_names)
