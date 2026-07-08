@@ -2,8 +2,7 @@ import os
 from pathlib import Path
 import cloudinary
 import dj_database_url
-from decouple import config
-
+from decouple import config, Csv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -14,7 +13,13 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(',')
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+
+# Trust Render's reverse proxy for HTTPS
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# CSRF Trusted Origins for Render
+CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS', cast=Csv(), default='https://mandel-hotel.onrender.com')
 
 cloudinary.config(
     cloud_name=config('CLOUD_NAME'),

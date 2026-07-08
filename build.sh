@@ -2,14 +2,17 @@
 # exit on error
 set -o errexit
 
+# Install Poetry
+pip install poetry==1.8.3
+
 # Install dependencies
-pip install -r requirements.txt
+poetry install --no-root
 
 # Navigate to the Django project directory
 cd myhotel
 
 # Run migrations
-python manage.py migrate
+poetry run python manage.py migrate
 
 # Collect static files
-python manage.py collectstatic --noinput
+poetry run python manage.py collectstatic --noinput
