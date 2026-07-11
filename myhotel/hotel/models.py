@@ -1,17 +1,21 @@
 from cloudinary.models import CloudinaryField
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils import timezone
+from django.conf import settings
 
-from .soft_delete import SoftDeleteModel
+from .soft_delete import SoftDeleteModel, UUIDModel
 
+class User(AbstractUser, UUIDModel):
+    """Custom User model with UUID primary key"""
+    pass
 
-class UserProfile(models.Model):
+class UserProfile(UUIDModel):
     """Extended user profile with additional fields"""
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="profile")
     profile_picture = CloudinaryField("image", blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -31,6 +35,9 @@ class Hotel(SoftDeleteModel):
     contact_phone = models.CharField(max_length=15)
     description = models.TextField(blank=True)
     hotel_logo = CloudinaryField("image", blank=True, null=True)
+
+    class Meta:
+        ordering = ["id"]
 
     def __str__(self):
         return self.name
@@ -82,6 +89,9 @@ class Room(SoftDeleteModel):
     room_number = models.CharField(max_length=10, unique=True)
     is_available = models.BooleanField(default=True)
 
+    class Meta:
+        ordering = ["id"]
+
     def __str__(self):
         return f"{self.room_type} - {self.room_number}"
 
@@ -105,38 +115,6 @@ class Booking(SoftDeleteModel):
     )
     transaction_id = models.CharField(max_length=100, blank=True, null=True)
 
-    def clean(self):
-        # Ensure check-in is before check-out
-        if self.checkin >= self.checkout:
-            raise ValidationError("Check-in must be before check-out.")
-        # Check guest count against room capacity
-        if self.guests > self.room.room_type.capacity:
-            raise ValidationError(
-                f"Number of guests ({self.guests}) exceeds the maximum capacity "
-                f"({self.room.room_type.capacity}) for this room type."
-            )
-        if self.guests <= 0:
-            raise ValidationError("Number of guests must be at least 1.")
-        # Check for overlapping bookings
-        overlapping_bookings = Booking.objects.filter(
-            room=self.room,
-            checkin__lt=self.checkout,
-            checkout__gt=self.checkin,
-            status="confirmed",
-        ).exclude(id=self.id)
-        if overlapping_bookings.exists():
-            raise ValidationError("The room is not available for the selected dates.")
-
-    def save(self, *args, **kwargs):
-        # Calculate total price based on number of nights
-        number_of_nights = (self.checkout - self.checkin).days
-        if number_of_nights < 1:
-            raise ValidationError("Checkout must be at least one day after checkin.")
-        self.total_price = self.room.room_type.base_price * number_of_nights
-        # Run validation before saving
-        self.clean()
-        super().save(*args, **kwargs)
-
     def __str__(self):
         return f"Booking for {self.room} - {self.checkin} to {self.checkout}"
 
@@ -152,7 +130,7 @@ class Guest(SoftDeleteModel):
         return f"{self.first_name} {self.last_name}"
 
 
-class ContactForm(models.Model):
+class ContactForm(UUIDModel):
     name = models.CharField(max_length=200)
     email = models.EmailField()
     subject = models.CharField(max_length=400)
@@ -164,7 +142,7 @@ class ContactForm(models.Model):
 
 
 # Permission and Role Management Models
-class Permission(models.Model):
+class Permission(UUIDModel):
     """Custom permission model for fine-grained access control"""
 
     PERMISSION_TYPES = [
@@ -198,7 +176,7 @@ class Permission(models.Model):
         super().save(*args, **kwargs)
 
 
-class Role(models.Model):
+class Role(UUIDModel):
     """Role model to group permissions"""
 
     name = models.CharField(max_length=100, unique=True)
@@ -219,14 +197,14 @@ class Role(models.Model):
         return list(self.permissions.values_list("codename", flat=True))
 
 
-class UserRole(models.Model):
+class UserRole(UUIDModel):
     """Many-to-many relationship between users and roles"""
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     role = models.ForeignKey(Role, on_delete=models.CASCADE)
     assigned_at = models.DateTimeField(auto_now_add=True)
     assigned_by = models.ForeignKey(
-        User, on_delete=models.SET_NULL, null=True, related_name="assigned_roles"
+        settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, related_name="assigned_roles"
     )
 
     class Meta:

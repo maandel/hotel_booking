@@ -1,1 +1,0 @@
-# Admin Panel Views Package

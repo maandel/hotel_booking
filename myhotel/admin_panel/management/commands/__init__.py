@@ -1,1 +1,1 @@
-# Management commands package
+# This file makes commands a python package

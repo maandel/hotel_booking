@@ -1,4 +1,5 @@
-from django.contrib.auth.models import User
+import uuid
+from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
@@ -18,13 +19,20 @@ class SoftDeleteManager(models.Manager):
         return super().get_queryset().filter(is_deleted=True)
 
 
-class SoftDeleteModel(models.Model):
+class UUIDModel(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+
+    class Meta:
+        abstract = True
+
+
+class SoftDeleteModel(UUIDModel):
     """Abstract base model for soft delete functionality"""
 
     is_deleted = models.BooleanField(default=False)
     deleted_at = models.DateTimeField(null=True, blank=True)
     deleted_by = models.ForeignKey(
-        User,
+        settings.AUTH_USER_MODEL,
         on_delete=models.SET_NULL,
         null=True,
         blank=True,

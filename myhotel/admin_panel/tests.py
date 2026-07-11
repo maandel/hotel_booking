@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from hotel.models import User
 from django.template import Context, Template
 from django.test import TestCase
 

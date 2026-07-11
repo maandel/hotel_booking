@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lumina Spa &amp; Resort - Main Landing</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&amp;family=Playfair+Display:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-highest": "#e8e1dd",
+                      "on-secondary-container": "#656464",
+                      "on-tertiary": "#ffffff",
+                      "error": "#ba1a1a",
+                      "error-container": "#ffdad6",
+                      "primary": "#4e635a",
+                      "surface-container-low": "#faf2ed",
+                      "tertiary-fixed-dim": "#c9c6c2",
+                      "surface-bright": "#fff8f4",
+                      "secondary": "#5f5e5e",
+                      "on-tertiary-fixed": "#1c1c19",
+                      "surface-variant": "#e8e1dd",
+                      "primary-fixed": "#d1e8dd",
+                      "on-primary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "on-background": "#1e1b19",
+                      "on-primary-fixed": "#0b1f18",
+                      "secondary-fixed-dim": "#c8c6c5",
+                      "outline": "#727875",
+                      "on-primary-container": "#263932",
+                      "tertiary-fixed": "#e5e2dd",
+                      "on-tertiary-container": "#363632",
+                      "on-secondary": "#ffffff",
+                      "secondary-container": "#e4e2e1",
+                      "surface": "#fff8f4",
+                      "surface-container-high": "#eee7e2",
+                      "surface-tint": "#4e635a",
+                      "inverse-on-surface": "#f7efeb",
+                      "primary-fixed-dim": "#b5ccc1",
+                      "secondary-fixed": "#e4e2e1",
+                      "on-surface": "#1e1b19",
+                      "on-secondary-fixed-variant": "#474747",
+                      "primary-container": "#8da399",
+                      "inverse-primary": "#b5ccc1",
+                      "tertiary": "#5f5e5b",
+                      "on-secondary-fixed": "#1b1c1c",
+                      "outline-variant": "#c2c8c4",
+                      "inverse-surface": "#33302d",
+                      "on-error-container": "#93000a",
+                      "background": "#fff8f4",
+                      "tertiary-container": "#a09e9a",
+                      "on-primary-fixed-variant": "#374b43",
+                      "surface-container": "#f4ece8",
+                      "surface-dim": "#e0d9d4",
+                      "on-surface-variant": "#424845",
+                      "on-tertiary-fixed-variant": "#474743"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "8px",
+                      "margin-desktop": "64px",
+                      "margin-mobile": "20px",
+                      "gutter": "24px",
+                      "container-max": "1280px",
+                      "section-gap": "120px"
+              },
+              "fontFamily": {
+                      "body-lg": [
+                              "Manrope"
+                      ],
+                      "body-md": [
+                              "Manrope"
+                      ],
+                      "label-caps": [
+                              "Manrope"
+                      ],
+                      "headline-md": [
+                              "Playfair Display"
+                      ],
+                      "headline-sm": [
+                              "Playfair Display"
+                      ],
+                      "display-lg": [
+                              "Playfair Display"
+                      ],
+                      "display-lg-mobile": [
+                              "Playfair Display"
+                      ]
+              },
+              "fontSize": {
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "1.0",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-sm": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "64px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "40px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        /* Ambient shadows and glassmorphism helpers */
+        .ambient-shadow {
+            box-shadow: 0 20px 40px -5px rgba(74, 69, 64, 0.04), 0 10px 20px -5px rgba(74, 69, 64, 0.02);
+        }
+        .glass-effect {
+            background-color: rgba(255, 248, 244, 0.85); /* surface-bright with opacity */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .input-subtle {
+            border: none;
+            border-bottom: 1px solid var(--tw-colors-outline-variant);
+            background: transparent;
+            transition: border-color 0.3s ease;
+        }
+        .input-subtle:focus {
+            outline: none;
+            border-bottom: 1px solid var(--tw-colors-primary);
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased overflow-x-hidden">
+<!-- Top Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-inverse-surface/80 backdrop-blur-md shadow-sm dark:shadow-none transition-all duration-500 ease-in-out">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<a class="font-headline-sm text-headline-sm text-primary dark:text-primary-fixed tracking-wide" href="#">Lumina Spa &amp; Resort</a>
+<div class="hidden md:flex items-center space-x-8">
+<a class="font-label-caps text-label-caps text-primary dark:text-primary-fixed border-b border-primary/30 pb-1" href="#">The Retreat</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors duration-300" href="#">Treatments</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors duration-300" href="#">Dining</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors duration-300" href="#">Gallery</a>
+<a class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors duration-300" href="#">Contact</a>
+</div>
+<a class="hidden md:inline-flex items-center justify-center px-6 py-3 bg-inverse-surface text-inverse-on-surface font-label-caps text-label-caps rounded-DEFAULT hover:opacity-90 transition-opacity" href="#">Book Now</a>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+</nav>
+<!-- Main Content -->
+<main>
+<!-- Hero Section -->
+<section class="relative h-screen min-h-[700px] flex items-center justify-center pt-20">
+<!-- Background Image -->
+<div class="absolute inset-0 z-0" data-alt="A breathtaking, wide-angle shot of a serene infinity pool at a luxury resort during sunset. The calm water reflects the vibrant orange, pink, and deep purple hues of the sky. The pool edge blends seamlessly with a distant ocean horizon. The setting is framed by lush, tropical silhouettes, conveying a sense of ultimate relaxation and modern serenity typical of a high-end spa escape." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCJ0Y4F3QfuXi_kImYAzK0oqswQmkWSUGOLiPTUw5OrEteKyNGvhujmzJp3aN87xtGerT-Z3rTu03-SumBIiebe8bYCelrTFA9fT20sJlb-0q9HqjfKe0Mjc2Ad8AkU_KpPxfFN3JwSJkLrlfsievcJt9YMbs9SyWK-3zOH76Tt2v0Ad89_B9fH1Wg_Sb9AXtM_rvUwZ2jNHJgB0luA9dNiNJYlUX_2rvtn3TcETAZXgOIhsiyJGUAOHw')"></div>
+<!-- Gradient Overlay for legibility -->
+<div class="absolute inset-0 z-10 bg-gradient-to-b from-black/20 via-transparent to-surface"></div>
+<!-- Booking Widget -->
+<div class="relative z-20 w-full max-w-[900px] mx-margin-mobile md:mx-auto glass-effect rounded-lg ambient-shadow p-6 md:p-10 mt-auto mb-16">
+<h1 class="font-headline-md text-headline-md text-primary mb-6 text-center">Find Your Sanctuary</h1>
+<form class="flex flex-col md:flex-row items-end gap-6">
+<div class="flex-1 w-full">
+<label class="block font-label-caps text-label-caps text-secondary mb-2">Check-in</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-0 bottom-2 text-outline" data-icon="calendar_month">calendar_month</span>
+<input class="input-subtle w-full pl-8 py-2 font-body-md text-body-md text-on-surface bg-transparent focus:ring-0" placeholder="Select Date" type="text"/>
+</div>
+</div>
+<div class="flex-1 w-full">
+<label class="block font-label-caps text-label-caps text-secondary mb-2">Check-out</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-0 bottom-2 text-outline" data-icon="calendar_month">calendar_month</span>
+<input class="input-subtle w-full pl-8 py-2 font-body-md text-body-md text-on-surface bg-transparent focus:ring-0" placeholder="Select Date" type="text"/>
+</div>
+</div>
+<div class="w-full md:w-32">
+<label class="block font-label-caps text-label-caps text-secondary mb-2">Guests</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-0 bottom-2 text-outline" data-icon="group">group</span>
+<select class="input-subtle w-full pl-8 py-2 font-body-md text-body-md text-on-surface bg-transparent focus:ring-0 appearance-none">
+<option>2</option>
+<option>1</option>
+<option>3</option>
+<option>4+</option>
+</select>
+</div>
+</div>
+<button class="w-full md:w-auto px-8 py-3 bg-inverse-surface text-inverse-on-surface font-label-caps text-label-caps rounded-DEFAULT hover:opacity-90 transition-opacity flex items-center justify-center gap-2" type="button">
+                        Search
+                        <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</form>
+</div>
+</section>
+<!-- Room Showcase: Sanctuaries -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="mb-16 md:w-1/2">
+<h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-4">Sanctuaries</h2>
+<p class="font-body-lg text-body-lg text-secondary">Designed for quiet contemplation and restorative sleep, our spaces blend natural textures with understated luxury.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Suite 1 -->
+<div class="group cursor-pointer">
+<div class="relative h-80 md:h-[400px] mb-6 overflow-hidden rounded-lg">
+<img class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="A brightly lit, minimalist hotel suite featuring a large, low-profile bed with pristine white linens. The room incorporates warm wood accents, natural stone textures, and floor-to-ceiling windows overlooking a lush garden. The lighting is soft and natural, emphasizing the spaciousness and serene 'Modern Serenity' design ethos." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8jPXqxZAvGTi4ocA7zdkvdwYtk-f3Jj0_PX738VdW0iCURYUXWgWDjsNkyXCgECASD9QjZliIKgdElsz8HU3gC7VGKvefonZMQZ2OEI120oyrzEtKdjqHlb9P9oHiDbBLV_BLiSM3nT7cIRcpXYnHXylv9ocXEhMAtMsSRv9C37yspLkLAJlnkmUdyc-S79vY6-dq6FrnOJwJLbCC1yrPGF2Yo8z5LT5IdMvn8buxCMVWnC_oDIWJhA"/>
+</div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Serenity Suite</h3>
+<span class="font-body-md text-body-md text-secondary">From $550/nt</span>
+</div>
+<p class="font-body-md text-body-md text-secondary mb-4 line-clamp-2">A spacious open-plan suite featuring a private balcony overlooking the botanical gardens and a deep soaking tub.</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant font-label-caps text-[10px] rounded-full">Private Terrace</span>
+<span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant font-label-caps text-[10px] rounded-full">Rain Shower</span>
+</div>
+<a class="inline-flex items-center gap-2 font-label-caps text-label-caps text-primary border-b border-primary pb-1 group-hover:opacity-80" href="#">
+                        View Details
+                        <span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+</a>
+</div>
+<!-- Villa 2 -->
+<div class="group cursor-pointer md:mt-12">
+<div class="relative h-80 md:h-[400px] mb-6 overflow-hidden rounded-lg">
+<img class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="An exterior view of a modern luxury villa named 'Azure Villa'. It features a private plunge pool extending towards a breathtaking ocean view. The architecture is clean and linear, using light-colored stone and expansive glass. The scene is bathed in golden hour sunlight, highlighting the tranquil, high-end resort atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_98TOr9nB914XPQ9pLa3gNlQczK5SF47o7sL0ELB4fFg_wmqIMCgn11199E6yTPMftQLIcbmJhViYr2T1Kv2GD5AdqQ1wMuXI4PmZ__4W7R5waz22JK8vWRGolzIvxZYcjXToAaTU0I8aBhMlmfhuSJIStaEQxM1eq4DUg1T792gy-dSfPBEMknm_uGKXgGGEdL1Zdf1pSQ2fYMnrWfsdqYrDCWd1CNPdnqwv3p1xHTG5s0KXBPnhmQ"/>
+</div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Azure Villa</h3>
+<span class="font-body-md text-body-md text-secondary">From $950/nt</span>
+</div>
+<p class="font-body-md text-body-md text-secondary mb-4 line-clamp-2">Complete privacy with an infinity plunge pool, dedicated butler service, and direct access to the secluded beach.</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant font-label-caps text-[10px] rounded-full">Plunge Pool</span>
+<span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant font-label-caps text-[10px] rounded-full">Butler Service</span>
+</div>
+<a class="inline-flex items-center gap-2 font-label-caps text-label-caps text-primary border-b border-primary pb-1 group-hover:opacity-80" href="#">
+                        View Details
+                        <span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+</a>
+</div>
+<!-- Penthouse 3 -->
+<div class="group cursor-pointer">
+<div class="relative h-80 md:h-[400px] mb-6 overflow-hidden rounded-lg">
+<img class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="The interior of a luxurious penthouse suite, 'Lumina Penthouse', offering panoramic ocean views through massive glass walls. The decor is ultra-minimalist with elegant, low-slung furniture in warm cream and soft grey tones. A subtle, ambient light fills the room, creating an airy, expansive, and incredibly serene mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtjaSKi0C8z_y-_tBIa1jJwM-gW34T6YJm_8Kgrqz0OGz1e1-ud4FvcMeaPBCpkDM469Eialo39gsSRwPBbyVJea36tilCSzxaWOt6oNUCyjtutpTEvt9_eqjwmRe6-AhBWxHl5se2w9RQQjU9FUonVjTjXyKA2BoFcKaB8YXoAIUzI8WOOZVcZX23qq7SqzkrkHwPk_I7bv5ymtx6l3QL--h8WVz6syjsoh9CKcbP0emn9Y7cGA5K-A"/>
+</div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Lumina Penthouse</h3>
+<span class="font-body-md text-body-md text-secondary">From $1800/nt</span>
+</div>
+<p class="font-body-md text-body-md text-secondary mb-4 line-clamp-2">The pinnacle of luxury. Expansive living areas, a private rooftop spa, and uninterrupted 360-degree coastal views.</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant font-label-caps text-[10px] rounded-full">Rooftop Spa</span>
+<span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant font-label-caps text-[10px] rounded-full">Panoramic Views</span>
+</div>
+<a class="inline-flex items-center gap-2 font-label-caps text-label-caps text-primary border-b border-primary pb-1 group-hover:opacity-80" href="#">
+                        View Details
+                        <span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+</a>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="mb-16 md:w-1/2">
+<h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-4">Spa Rituals &amp; Wellness</h2>
+<p class="font-body-lg text-body-lg text-secondary">Experience a holistic journey of rejuvenation where ancient wisdom meets modern science in our curated wellness rituals.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Package 1 -->
+<div class="group cursor-pointer">
+<div class="relative h-80 md:h-[400px] mb-6 overflow-hidden rounded-lg">
+<img alt="Lumina Signature Massage" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCU9LSzrZEiClM_T_yo9-DyrPhiilEBh8eECxCS0GV9KE4oEu_DBHs5v-SScglR9guCLUCnTD3rwOV5JD0xjg78g76xNYl2xWtlfJpb-gjWaO8qskS0KCupsgdB6Nri0QMXYJNlP6YTRt3-qpyQaZMi3ndvXfhTqH59yTAohsZ0_PPfCYMGVRwqnfaiFHE0d1GZGbDKItUgzyTgSQj1pextkyjhXuu2D-vFI8zU9uUu6qcWHDj4AMw4LA"/>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors mb-2">Lumina Signature Massage</h3>
+<p class="font-body-md text-body-md text-secondary mb-6 line-clamp-2">A 90-minute restorative hot stone therapy designed to release deep-seated tension and restore energetic balance.</p>
+<a class="inline-flex items-center gap-2 font-label-caps text-label-caps text-primary border-b border-primary pb-1 group-hover:opacity-80" href="#">
+        Discover More
+        <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+<!-- Package 2 -->
+<div class="group cursor-pointer md:mt-12">
+<div class="relative h-80 md:h-[400px] mb-6 overflow-hidden rounded-lg">
+<img alt="Botanical Glow Ritual" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWBupmN8NLyanQ2TIfgRgqURuVYEiehPtGrgokuzOouWzHJbVUVY2ciJCQdqf_yT-aYmaxNb45JsOobfkqL0tDI4h_9xb8rj8uR8WsnN2RzaeX-He1KIPQtFWOwqocPBfUNQ8h6d5S44j0hPoxyb660GxG8acAjSXF8ZsQzjwnUrgYmcPNliI2_N-1G4jupn8Rqvm5ZmE9tX0-YQP9I2MtOgJ8k_Sb4ad-wx1fpoTe1YTr9R00Q8duEA"/>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors mb-2">Botanical Glow Ritual</h3>
+<p class="font-body-md text-body-md text-secondary mb-6 line-clamp-2">An exfoliating sea salt scrub followed by a nourishing essential oil wrap to revitalize the skin and soothe the senses.</p>
+<a class="inline-flex items-center gap-2 font-label-caps text-label-caps text-primary border-b border-primary pb-1 group-hover:opacity-80" href="#">
+        Discover More
+        <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+<!-- Package 3 -->
+<div class="group cursor-pointer">
+<div class="relative h-80 md:h-[400px] mb-6 overflow-hidden rounded-lg">
+<img alt="Zen Morning Yoga" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZTRX-0T-fvEuHEueZETF4iueS4SPC5hJwLz1ZiUnRCX0keyqsmLVsqyxja1OLwLE7se8p8w5mhAhMyRubOWWkv4cD7fiZeCJfK5PmkRYato3DU6x3Fb_fyc2RawnX4YFWopiQ-9BHigoGdSKhY8wpyIKD3zE8Z32SRz3ohTrBe4iYjLr4--y50Z1_psENoofN8RPT5b4RtxNyV76Yf0ychT-PeCRoNZbDcFLcA5n5pWwQQzh6zczPkA"/>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors mb-2">Zen Morning Yoga</h3>
+<p class="font-body-md text-body-md text-secondary mb-6 line-clamp-2">A private sunrise session in our garden studio, focusing on breathwork and gentle flow to start your day with clarity.</p>
+<a class="inline-flex items-center gap-2 font-label-caps text-label-caps text-primary border-b border-primary pb-1 group-hover:opacity-80" href="#">
+        Discover More
+        <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+</div>
+</section><footer class="bg-surface-container-low dark:bg-inverse-surface border-t border-outline-variant/30 w-full pt-section-gap pb-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="md:col-span-1 mb-8 md:mb-0">
+<span class="font-headline-md text-headline-md text-primary dark:text-primary-fixed mb-4 block">Lumina</span>
+<p class="font-body-md text-body-md text-secondary dark:text-secondary-fixed-dim">A Sanctuary of Modern Serenity.</p>
+</div>
+<div class="md:col-span-3 grid grid-cols-2 md:grid-cols-4 gap-8">
+<div class="flex flex-col space-y-4">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-opacity duration-200 opacity-80 hover:opacity-100" href="#">Spa Rituals</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-opacity duration-200 opacity-80 hover:opacity-100" href="#">Suites &amp; Villas</a>
+</div>
+<div class="flex flex-col space-y-4">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-opacity duration-200 opacity-80 hover:opacity-100" href="#">Wellness Programs</a>
+</div>
+<div class="flex flex-col space-y-4">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-opacity duration-200 opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-opacity duration-200 opacity-80 hover:opacity-100" href="#">Sustainability</a>
+</div>
+</div>
+</div>
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mt-16 pt-8 border-t border-outline-variant/20">
+<p class="font-body-md text-body-md text-secondary text-sm">© 2024 Lumina Spa &amp; Resort. A Sanctuary of Modern Serenity.</p>
+</div>
+</footer>
+</body></html>

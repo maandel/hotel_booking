@@ -58,6 +58,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "corsheaders",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
+    "allauth.socialaccount.providers.github",
+    "ninja_extra",
+    "ninja_jwt",
 ]
 
 CLOUDINARY_STORAGE = {
@@ -69,6 +77,7 @@ CLOUDINARY_STORAGE = {
 DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     # 'myhotel.middleware.MediaFilesMiddleware',  # Custom middleware for media files
@@ -78,6 +87,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = "myhotel.urls"
@@ -95,11 +105,6 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "hotel.context_processors.settings_context",
-                "hotel.context_processors.hotel_context",
-                "hotel.breadcrumb_processor.breadcrumb_context",
-                "admin_panel.context_processors.user_initial_context",
-                "admin_panel.context_processors.user_permissions_context",
             ],
         },
     },
@@ -179,10 +184,6 @@ DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL")
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = "/static/"
-STATICFILES_DIRS = [
-    BASE_DIR / "hotel/static",
-    BASE_DIR / "admin_panel/static",
-]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Media files
@@ -190,14 +191,47 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 # WhiteNoise configuration for static files
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+if not DEBUG:
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Configure WhiteNoise to serve media files in production
 WHITENOISE_USE_FINDERS = True
 WHITENOISE_AUTOREFRESH = True
+# Triggering reload to flush stale DNS cache again!!
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+AUTH_USER_MODEL = 'hotel.User'
 
 # Authentication URLs
 LOGIN_URL = "/hotel/admin/login/"
 LOGOUT_REDIRECT_URL = "/hotel/admin/login/"
+
+# CORS Configuration
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+CORS_ALLOW_CREDENTIALS = True
+
+# Allauth Configuration
+SITE_ID = 1
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+]
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "SCOPE": ["profile", "email"],
+        "AUTH_PARAMS": {"access_type": "online"},
+    },
+    "github": {
+        "SCOPE": ["user", "repo", "read:org"],
+    },
+}
+
+import datetime
+
+NINJA_JWT = {
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=config('JWT_ACCESS_EXPIRATION_MINUTES', default=60, cast=int)),
+    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=config('JWT_REFRESH_EXPIRATION_DAYS', default=7, cast=int)),
+}
